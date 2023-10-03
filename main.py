@@ -17,6 +17,10 @@ def main():
 
         opc = input('\nIngrese su eleccion: \n')
         opc_validada = funciones.validar_opc(opc)
+        if opc_validada is not None:
+            if opc_validada == 1:
+                funciones.crear_archivo_binario('peajes-tp4.csv')
+
 
 
 if __name__ == '__main__':

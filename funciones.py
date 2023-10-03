@@ -16,6 +16,19 @@ class Vehiculo:
             + ' | Distancia: ' + str(self.distancia)
 
 
+def crear_archivo_binario(file):
+    m = open(file, 'rt')
+    m.readline()
+    cont = 0
+    for linea in m:
+        cont += 1
+        if cont < 10:
+            print(linea)
+        else:
+            break
+
+
+
 def validar_opc(opcion):
     numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     if opcion in numeros:
