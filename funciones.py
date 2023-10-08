@@ -1,3 +1,8 @@
+import io
+import os.path
+import pickle
+
+
 class Vehiculo:
     def __init__(self, identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia):
         self.identificador = identificador
@@ -16,17 +21,24 @@ class Vehiculo:
             + ' | Distancia: ' + str(self.distancia)
 
 
-def crear_archivo_binario(file):
-    m = open(file, 'rt')
-    m.readline()
-    cont = 0
-    for linea in m:
-        cont += 1
-        if cont < 10:
-            print(linea)
-        else:
-            break
-
+def crear_archivo_binario():
+    m = open("peajes-tp4.csv", 'rt')
+    n = open("peajes-tp4.bin", "wb")
+    lineas = m.readlines()
+    for linea in lineas[2:]:
+        datos = linea.split(",")
+        identificador = datos[0]
+        patente = datos[1]
+        tipo_vehiculo = datos[2]
+        forma_de_pago = datos[3]
+        pais_cabina = datos[4]
+        distancia = datos[5]
+        if distancia[-1] == "\n":
+            distancia = distancia[:-1]
+        vehiculo = Vehiculo(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
+        pickle.dump(vehiculo, n)
+    n.close()
+    m.close()
 
 
 def validar_opc(opcion):
