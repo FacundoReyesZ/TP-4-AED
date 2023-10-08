@@ -5,7 +5,7 @@ def main():
     opc = 0
     while opc != 9:
         print('\nMenu de opciones:\n')
-        print('1. ')
+        print('1. Crear archivo binario de registros ')
         print('2. ')
         print('3. ')
         print('4. ')
