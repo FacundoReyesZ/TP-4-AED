@@ -32,6 +32,10 @@ def main():
                         print("La operación ha sido cancelada.")
                 else:
                     funciones.crear_archivo_binario()
+                    print('El archivo binario ha sido creado con exito...')
+
+            elif opc_validada == 2:
+                funciones.mostrar_registros()
 
 
 if __name__ == '__main__':

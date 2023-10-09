@@ -1,4 +1,3 @@
-import io
 import os.path
 import pickle
 
@@ -21,6 +20,15 @@ class Vehiculo:
             + ' | Distancia: ' + str(self.distancia)
 
 
+def validar_opc(opcion):
+    numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    if opcion in numeros:
+        opcion = int(opcion)
+        return opcion
+    else:
+        return None
+
+
 def crear_archivo_binario():
     m = open("peajes-tp4.csv", 'rt')
     n = open("peajes-tp4.bin", "wb")
@@ -41,10 +49,83 @@ def crear_archivo_binario():
     m.close()
 
 
-def validar_opc(opcion):
-    numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-    if opcion in numeros:
-        opcion = int(opcion)
-        return opcion
-    else:
-        return None
+def patente_arg(pat):
+    if len(pat) < 7:
+        return False
+
+    if pat[:2].isalpha() and pat[2:5].isdigit() and pat[5:].isalpha():
+        return True
+    return False
+
+
+def patente_brz(pat):
+    if len(pat) < 7:
+        return False
+
+    if pat[:3].isalpha() and pat[3].isdigit() and pat[4].isalpha() and pat[5:].isdigit():
+        return True
+    return False
+
+
+def patente_bol(pat):
+    if len(pat) < 7:
+        return False
+
+    if pat[:2].isalpha() and pat[2:].isdigit():
+        return True
+    return False
+
+
+def patente_par(pat):
+    if len(pat) < 7:
+        return False
+
+    if pat[:4].isalpha() and pat[4:].isdigit():
+        return True
+    return False
+
+
+def patente_uru(pat):
+    if len(pat) < 7:
+        return False
+
+    if pat[:3].isalpha() and pat[3:].isdigit():
+        return True
+    return False
+
+
+def patente_chi(pat):
+    if pat[0].isspace():
+        pat = pat[1:]
+        if len(pat) < 6:
+            return False
+
+        if pat[:4].isalpha() and pat[4:].isdigit():
+            return True
+        return False
+
+
+def mostrar_registros():
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+
+    while n.tell() < t:
+        vehic = pickle.load(n)
+
+        if patente_chi(vehic.patente):
+            pais = "Chile"
+        elif patente_arg(vehic.patente):
+            pais = "Argentina"
+        elif patente_bol(vehic.patente):
+            pais = "Bolivia"
+        elif patente_brz(vehic.patente):
+            pais = "Brasil"
+        elif patente_par(vehic.patente):
+            pais = "Paraguay"
+        elif patente_uru(vehic.patente):
+            pais = "Uruguay"
+        else:
+            pais = "Otro"
+
+        print(f'{vehic} | {pais}')
