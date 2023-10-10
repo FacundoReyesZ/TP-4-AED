@@ -129,3 +129,73 @@ def mostrar_registros():
             pais = "Otro"
 
         print(f'{vehic} | {pais}')
+
+
+def es_numero(i):
+    if i in "0123456789":
+        return True
+
+
+def cargar_ticket():
+    correcto = False
+    while not correcto:
+        inteable = True
+        identificador = input("Codigo identificador: ")
+        for i in identificador:                 # revisamos si se puede transformar a int
+            if not es_numero(i):
+                inteable = False
+        if inteable:                            # de ser transformable ahora preguntar si es mayor a 0
+            identificador = int(identificador)
+            if identificador > 0:
+                correcto = True
+            else:
+                print("ERROR - Codigo invalido [error 2] / Intente denuevo")
+        else:
+            print("ERROR - Codigo invalido [error 1] / Intente denuevo")
+
+    patente = input("Patente: ")
+
+    correcto = False
+    while not correcto:
+        tipo_vehiculo = input("Tipo de vehiculo (entre 0 y 2): ")
+        if tipo_vehiculo in ["0", "1", "2"]:    # simplemente si no es 0 1 o 2 no es valido
+            tipo_vehiculo = int(tipo_vehiculo)
+            correcto = True
+        else:
+            print("ERROR - Digito invalido / Intente denuevo")
+
+    correcto = False
+    while not correcto:
+        forma_de_pago = input("Forma de pago (entre 1 y 2): ")
+        if forma_de_pago in ["1", "2"]:    # lo mismo que el anterior
+            forma_de_pago = int(forma_de_pago)
+            correcto = True
+        else:
+            print("ERROR - Digito invalido / Intente denuevo")
+
+    correcto = False
+    while not correcto:
+        pais_cabina = input("Pais de Cabina (entre 0 y 4): ")
+        if pais_cabina in ["0", "1", "2", "3", "4"]:    # "" "" "" "" x2
+            pais_cabina = int(pais_cabina)
+            correcto = True
+        else:
+            print("ERROR - Digito invalido / Intente denuevo")
+
+    correcto = False
+    while not correcto:
+        inteable = True
+        distancia = input("Distancia (KM desde cabina): ")
+        for i in distancia:                 # el mismo proceso del primero excepto que no pregunta si es mayor a 0
+            if not es_numero(i):
+                inteable = False
+        if inteable:
+            distancia = int(distancia)
+            correcto = True
+        else:
+            print("ERROR - Numero invalido {str} / Intente denuevo")
+
+    m1 = open("peajes-tp4.bin", "ab")
+    v = Vehiculo(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
+    pickle.dump(v, m1)
+    m1.close()

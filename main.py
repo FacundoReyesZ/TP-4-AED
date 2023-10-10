@@ -35,6 +35,9 @@ def main():
                     print('El archivo binario ha sido creado con exito...')
 
             elif opc_validada == 2:
+                funciones.cargar_ticket()
+
+            elif opc_validada == 3:
                 funciones.mostrar_registros()
 
 
