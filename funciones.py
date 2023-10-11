@@ -141,10 +141,10 @@ def cargar_ticket():
     while not correcto:
         inteable = True
         identificador = input("Codigo identificador: ")
-        for i in identificador:                 # revisamos si se puede transformar a int
+        for i in identificador:  # revisamos si se puede transformar a int
             if not es_numero(i):
                 inteable = False
-        if inteable:                            # de ser transformable ahora preguntar si es mayor a 0
+        if inteable:  # de ser transformable ahora preguntar si es mayor a 0
             identificador = int(identificador)
             if identificador > 0:
                 correcto = True
@@ -158,7 +158,7 @@ def cargar_ticket():
     correcto = False
     while not correcto:
         tipo_vehiculo = input("Tipo de vehiculo (entre 0 y 2): ")
-        if tipo_vehiculo in ["0", "1", "2"]:    # simplemente si no es 0 1 o 2 no es valido
+        if tipo_vehiculo in ["0", "1", "2"]:  # simplemente si no es 0 1 o 2 no es valido
             tipo_vehiculo = int(tipo_vehiculo)
             correcto = True
         else:
@@ -167,7 +167,7 @@ def cargar_ticket():
     correcto = False
     while not correcto:
         forma_de_pago = input("Forma de pago (entre 1 y 2): ")
-        if forma_de_pago in ["1", "2"]:    # lo mismo que el anterior
+        if forma_de_pago in ["1", "2"]:  # lo mismo que el anterior
             forma_de_pago = int(forma_de_pago)
             correcto = True
         else:
@@ -176,7 +176,7 @@ def cargar_ticket():
     correcto = False
     while not correcto:
         pais_cabina = input("Pais de Cabina (entre 0 y 4): ")
-        if pais_cabina in ["0", "1", "2", "3", "4"]:    # "" "" "" "" x2
+        if pais_cabina in ["0", "1", "2", "3", "4"]:  # "" "" "" "" x2
             pais_cabina = int(pais_cabina)
             correcto = True
         else:
@@ -186,7 +186,7 @@ def cargar_ticket():
     while not correcto:
         inteable = True
         distancia = input("Distancia (KM desde cabina): ")
-        for i in distancia:                 # el mismo proceso del primero excepto que no pregunta si es mayor a 0
+        for i in distancia:  # el mismo proceso del primero excepto que no pregunta si es mayor a 0
             if not es_numero(i):
                 inteable = False
         if inteable:
@@ -199,3 +199,29 @@ def cargar_ticket():
     v = Vehiculo(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
     pickle.dump(v, m1)
     m1.close()
+
+
+def contar_combinacions():
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+
+    combinaciones = [[0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0]]
+    while n.tell() < t:
+        vehic = pickle.load(n)
+        tipo_vehiculo = vehic.tipo_vehiculo
+        pais_cabina = vehic.pais_cabina
+        combinaciones[int(tipo_vehiculo)][int(pais_cabina)] += 1
+    n.close()
+    return combinaciones
+
+
+def mostrar_combinacion(arr):
+    tipos_vehiculo = ['MOTOCICLETA', 'AUTOMÓVIL', 'CAMIÓN']
+    paises_cabinas = ['Argentina', 'Bolivia', 'Brasil', 'Paraguay', 'Uruguay']
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            if arr[i][j] > 0:
+                print(f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')

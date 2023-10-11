@@ -12,7 +12,7 @@ def main():
         print('3. ')
         print('4. ')
         print('5. ')
-        print('6. ')
+        print('6.  Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
         print('7. ')
         print('8. ')
         print('9. Salir')
@@ -39,6 +39,9 @@ def main():
 
             elif opc_validada == 3:
                 funciones.mostrar_registros()
+
+            elif opc_validada == 6:
+                funciones.mostrar_combinacion(funciones.contar_combinacions())
 
 
 if __name__ == '__main__':
