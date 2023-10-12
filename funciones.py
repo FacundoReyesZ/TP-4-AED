@@ -273,3 +273,53 @@ def mostrar_combinacion(arr):
             if arr[i][j] > 0:
                 print(
                     f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')
+
+
+def calcular_distancia_promedio():
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+    cant_vehiculos = 0
+    distancia_total = 0
+    while n.tell() < t:
+        vehic = pickle.load(n)
+        cant_vehiculos += 1
+        distancia_total += int(vehic.distancia)
+
+    distancia_promedio = distancia_total / cant_vehiculos
+
+    return round(distancia_promedio, 2)
+
+
+def vector_vehiculos_mayor_promedio(promedio):
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+    arr = []
+    while n.tell() < t:
+        vehic = pickle.load(n)
+        if int(vehic.distancia) > promedio:
+            arr.append(vehic)
+
+    return arr
+
+
+def shell_sort(arr):
+    n = len(arr)
+    h = 1
+    while h <= n // 9:
+        h = 3*h + 1
+    while h > 0:
+        for j in range(h, n):
+            y = arr[j].distancia
+            k = j - h
+            while k >= 0 and y < arr[k].distancia:
+                arr[k + h].distancia = arr[k].distancia
+                k -= h
+            arr[k + h].distancia = y
+        h //= 3
+
+
+def mostrar_arreglo(arr):
+    for vehiculo in arr:
+        print(vehiculo)

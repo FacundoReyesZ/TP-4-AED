@@ -49,6 +49,12 @@ def main():
             elif opc_validada == 6:
                 funciones.mostrar_combinacion(funciones.contar_combinacions())
 
+            elif opc_validada == 8:
+                distancia_promedio = funciones.calcular_distancia_promedio()
+                arreglo_vehiculos = funciones.vector_vehiculos_mayor_promedio(distancia_promedio)
+                funciones.shell_sort(arreglo_vehiculos)
+                funciones.mostrar_arreglo(arreglo_vehiculos)
+
 
 if __name__ == '__main__':
     main()
