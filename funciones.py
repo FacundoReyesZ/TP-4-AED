@@ -201,6 +201,39 @@ def cargar_ticket():
     m1.close()
 
 
+def buscar_id():
+    id = input("Ingrese el codigo numerico a buscar: ")
+    coincide = False
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+
+    while n.tell() < t:
+        vehic = pickle.load(n)
+        if vehic.identificador == id:
+            print("Codigo encontrado: \n")
+            if patente_chi(vehic.patente):
+                pais = "Chile"
+            elif patente_arg(vehic.patente):
+                pais = "Argentina"
+            elif patente_bol(vehic.patente):
+                pais = "Bolivia"
+            elif patente_brz(vehic.patente):
+                pais = "Brasil"
+            elif patente_par(vehic.patente):
+                pais = "Paraguay"
+            elif patente_uru(vehic.patente):
+                pais = "Uruguay"
+            else:
+                pais = "Otro"
+
+            print(f'{vehic} | {pais}')
+            coincide = True
+            break
+    if not coincide:
+        print("No se encontro un registro con el codigo introducido")
+
+
 def contar_combinacions():
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
@@ -224,4 +257,5 @@ def mostrar_combinacion(arr):
     for i in range(len(arr)):
         for j in range(len(arr[i])):
             if arr[i][j] > 0:
-                print(f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')
+                print(
+                    f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')

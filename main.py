@@ -8,11 +8,11 @@ def main():
     while opc != 9:
         print('\nMenu de opciones:\n')
         print('1. Crear archivo binario de registros ')
-        print('2. ')
-        print('3. ')
+        print('2. Cargar por teclado los datos de un ticket')
+        print('3. Mostrar todos los datos de todos los registros del archivo binario')
         print('4. ')
-        print('5. ')
-        print('6.  Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
+        print('5. Buscar registro por ID')
+        print('6. Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
         print('7. ')
         print('8. ')
         print('9. Salir')
@@ -39,6 +39,9 @@ def main():
 
             elif opc_validada == 3:
                 funciones.mostrar_registros()
+
+            elif opc_validada == 5:
+                funciones.buscar_id()
 
             elif opc_validada == 6:
                 funciones.mostrar_combinacion(funciones.contar_combinacions())
