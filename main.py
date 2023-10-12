@@ -54,6 +54,7 @@ def main():
                 arreglo_vehiculos = funciones.vector_vehiculos_mayor_promedio(distancia_promedio)
                 funciones.shell_sort(arreglo_vehiculos)
                 funciones.mostrar_arreglo(arreglo_vehiculos)
+                print(f'La distancia promedio es de: {distancia_promedio} KM')
 
 
 if __name__ == '__main__':
