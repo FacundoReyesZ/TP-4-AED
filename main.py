@@ -10,7 +10,7 @@ def main():
         print('1. Crear archivo binario de registros ')
         print('2. Cargar por teclado los datos de un ticket')
         print('3. Mostrar todos los datos de todos los registros del archivo binario')
-        print('4. ')
+        print('4. Mostrar todos los registros del archivo binario cuya patente sea igual a la patente ingresada')
         print('5. Buscar registro por ID')
         print('6. Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
         print('7. ')
@@ -39,6 +39,9 @@ def main():
 
             elif opc_validada == 3:
                 funciones.mostrar_registros()
+
+            elif opc_validada == 4:
+                funciones.patente()
 
             elif opc_validada == 5:
                 funciones.buscar_id()

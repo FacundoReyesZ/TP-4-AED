@@ -201,6 +201,20 @@ def cargar_ticket():
     m1.close()
 
 
+def patente():
+    x = input("ingrese la patente a buscar:  ")
+    fb = "peajes-tp4.bin"
+    n = open(fb, "rb")
+    t = os.path.getsize(fb)
+    cont_total = 0
+
+    while n.tell() < t:
+        pat = pickle.load(n)
+        if pat.patente == x:
+            cont_total += 1
+            print(f'{pat}')
+    print(f'\nCantidad de registros con la patente ||{x}||: {cont_total}')
+
 def buscar_id():
     id = input("Ingrese el codigo numerico a buscar: ")
     coincide = False
