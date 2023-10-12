@@ -14,7 +14,7 @@ def main():
         print('5. Buscar registro por ID')
         print('6. Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
         print('7. ')
-        print('8. ')
+        print('8. Mostrar el arreglo con todos los vehiculos que recorrieron mas de la distancia promedio')
         print('9. Salir')
 
         opc = input('\nIngrese su eleccion: \n')
