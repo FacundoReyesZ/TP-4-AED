@@ -215,6 +215,7 @@ def patente():
             print(f'{pat}')
     print(f'\nCantidad de registros con la patente ||{x}||: {cont_total}')
 
+
 def buscar_id():
     id = input("Ingrese el codigo numerico a buscar: ")
     coincide = False
@@ -275,6 +276,28 @@ def mostrar_combinacion(arr):
                     f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')
 
 
+def mostrar_opc7(arr):
+    tipos_vehiculo = ['MOTOCICLETA', 'AUTOMÓVIL', 'CAMIÓN']
+    paises_cabinas = ['Argentina', 'Bolivia', 'Brasil', 'Paraguay', 'Uruguay']
+    total_vehiculo = 0
+    total_pais = 0
+    filas = len(arr)
+    columnas = len(arr[0])
+
+    for c in range(columnas):
+        for f in range(filas):
+            total_pais += arr[f][c]
+        print(f"La cantidad de vehiculos que pasaron por la cabina del pais {paises_cabinas[c]} fue de: {total_pais}")
+        total_pais = 0
+
+    for f in range(filas):
+        for c in range(columnas):
+            total_vehiculo += arr[f][c]
+        print(
+            f"La cantidad de vehiculos del tipo {tipos_vehiculo[f]} que pasaron por alguna cabina fue de: {total_vehiculo}")
+        total_vehiculo = 0
+
+
 def calcular_distancia_promedio():
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
@@ -308,7 +331,7 @@ def shell_sort(arr):
     n = len(arr)
     h = 1
     while h <= n // 9:
-        h = 3*h + 1
+        h = 3 * h + 1
     while h > 0:
         for j in range(h, n):
             y = arr[j].distancia

@@ -13,7 +13,7 @@ def main():
         print('4. Mostrar todos los registros del archivo binario cuya patente sea igual a la patente ingresada')
         print('5. Buscar registro por ID')
         print('6. Determinar y mostrar la cantidad de vehículos de cada combinación posible entre tipo de vehículo y país de cabina')
-        print('7. ')
+        print('7. Mostrar cantidad de vehiculos por tipo de vehiculo y por pais de cabina')
         print('8. Mostrar el arreglo con todos los vehiculos que recorrieron mas de la distancia promedio')
         print('9. Salir')
 
@@ -48,6 +48,9 @@ def main():
 
             elif opc_validada == 6:
                 funciones.mostrar_combinacion(funciones.contar_combinacions())
+
+            elif opc_validada == 7:
+                funciones.mostrar_opc7(funciones.contar_combinacions())
 
             elif opc_validada == 8:
                 distancia_promedio = funciones.calcular_distancia_promedio()
