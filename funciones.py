@@ -252,7 +252,7 @@ def buscar_id():
         print("No se encontro un registro con el codigo introducido")
 
 
-def contar_combinacions():
+def contar_combinaciones():
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
     t = os.path.getsize(fb)

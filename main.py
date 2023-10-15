@@ -4,6 +4,7 @@ import funciones
 
 def main():
     opc = 0
+    matriz = []
     while opc != 9:
         print('\nMenu de opciones:\n')
         print('1. Crear archivo binario de registros ')
@@ -56,13 +57,17 @@ def main():
 
             elif opc_validada == 6:
                 if os.path.exists("peajes-tp4.bin"):
-                    funciones.mostrar_combinacion(funciones.contar_combinacions())
+                    matriz = funciones.contar_combinaciones()
+                    funciones.mostrar_combinacion(matriz)
                 else:
                     print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 7:
                 if os.path.exists("peajes-tp4.bin"):
-                    funciones.mostrar_opc7(funciones.contar_combinacions())
+                    if matriz:
+                        funciones.mostrar_opc7(matriz)
+                    else:
+                        print("Error - No existe la matriz, porfavor ingrese 6 en el menu")
                 else:
                     print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
