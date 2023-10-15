@@ -1,5 +1,4 @@
 import os.path
-
 import funciones
 
 
@@ -38,26 +37,44 @@ def main():
                 funciones.cargar_ticket()
 
             elif opc_validada == 3:
-                funciones.mostrar_registros()
+                if os.path.exists("peajes-tp4.bin"):
+                    funciones.mostrar_registros()
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 4:
-                funciones.patente()
+                if os.path.exists("peajes-tp4.bin"):
+                    funciones.patente()
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 5:
-                funciones.buscar_id()
+                if os.path.exists("peajes-tp4.bin"):
+                    funciones.buscar_id()
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 6:
-                funciones.mostrar_combinacion(funciones.contar_combinacions())
+                if os.path.exists("peajes-tp4.bin"):
+                    funciones.mostrar_combinacion(funciones.contar_combinacions())
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 7:
-                funciones.mostrar_opc7(funciones.contar_combinacions())
+                if os.path.exists("peajes-tp4.bin"):
+                    funciones.mostrar_opc7(funciones.contar_combinacions())
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 8:
-                distancia_promedio = funciones.calcular_distancia_promedio()
-                arreglo_vehiculos = funciones.vector_vehiculos_mayor_promedio(distancia_promedio)
-                funciones.shell_sort(arreglo_vehiculos)
-                funciones.mostrar_arreglo(arreglo_vehiculos)
-                print(f'La distancia promedio es de: {distancia_promedio} KM')
+                if os.path.exists("peajes-tp4.bin"):
+                    distancia_promedio = funciones.calcular_distancia_promedio()
+                    arreglo_vehiculos = funciones.vector_vehiculos_mayor_promedio(distancia_promedio)
+                    funciones.shell_sort(arreglo_vehiculos)
+                    funciones.mostrar_arreglo(arreglo_vehiculos)
+                    print(f'La distancia promedio es de: {distancia_promedio} KM')
+                else:
+                    print("Error - No existe el archivo binario, porfavor ingrese 1 en el menu")
 
             elif opc_validada == 9:
                 break

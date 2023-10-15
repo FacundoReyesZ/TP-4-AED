@@ -211,7 +211,7 @@ def patente():
 
     while n.tell() < t:
         pat = pickle.load(n)
-        if pat.patente == x:
+        if pat.patente == x.upper():
             cont_total += 1
             print(f'{pat}')
     print(f'\nCantidad de registros con la patente ||{x}||: {cont_total}')
@@ -276,7 +276,7 @@ def mostrar_combinacion(arr):
         for j in range(len(arr[i])):
             if arr[i][j] > 0:
                 print(
-                    f'La cantidad de vehiculos del tipo--{tipos_vehiculo[i]}-- de la cabina del pais--{paises_cabinas[j]}-- fue de {arr[i][j]} ')
+                    f'La cantidad de vehiculos del tipo --{tipos_vehiculo[i]}-- de la cabina del pais --{paises_cabinas[j]}-- fue de {arr[i][j]} ')
 
 
 def mostrar_opc7(arr):
