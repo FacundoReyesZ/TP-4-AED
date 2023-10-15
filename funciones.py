@@ -218,17 +218,16 @@ def patente():
 
 
 def buscar_id():
-    id = input("Ingrese el codigo numerico a buscar: ")
+    identif = input("Ingrese el codigo numerico a buscar: ")
     coincide = False
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
     t = os.path.getsize(fb)
     paises = ['Argentina', 'Brasil', 'Bolivia', 'Paraguay', 'Uruguay', 'Chile', 'Otro']
 
-
     while n.tell() < t:
         vehic = pickle.load(n)
-        if vehic.identificador == id:
+        if vehic.identificador == identif:
             print("Codigo encontrado: \n")
             if patente_chi(vehic.patente):
                 indice = 5
