@@ -2,7 +2,7 @@ import os.path
 import pickle
 
 
-class Vehiculo:
+class Ticket:
     def __init__(self, identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia):
         self.identificador = identificador
         self.patente = patente
@@ -43,7 +43,7 @@ def crear_archivo_binario():
         distancia = datos[5]
         if distancia[-1] == "\n":
             distancia = distancia[:-1]
-        vehiculo = Vehiculo(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
+        vehiculo = Ticket(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
         pickle.dump(vehiculo, n)
     n.close()
     m.close()
@@ -109,26 +109,27 @@ def mostrar_registros():
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
     t = os.path.getsize(fb)
+    paises = ['Argentina', 'Brasil', 'Bolivia', 'Paraguay', 'Uruguay', 'Chile', 'Otro']
 
     while n.tell() < t:
         vehic = pickle.load(n)
 
         if patente_chi(vehic.patente):
-            pais = "Chile"
+            indice = 5
         elif patente_arg(vehic.patente):
-            pais = "Argentina"
+            indice = 0
         elif patente_bol(vehic.patente):
-            pais = "Bolivia"
+            indice = 2
         elif patente_brz(vehic.patente):
-            pais = "Brasil"
+            indice = 1
         elif patente_par(vehic.patente):
-            pais = "Paraguay"
+            indice = 3
         elif patente_uru(vehic.patente):
-            pais = "Uruguay"
+            indice = 4
         else:
-            pais = "Otro"
+            indice = 6
 
-        print(f'{vehic} | {pais}')
+        print(f'{vehic} | {paises[indice]}')
 
 
 def es_numero(i):
@@ -196,7 +197,7 @@ def cargar_ticket():
             print("ERROR - Numero invalido {str} / Intente denuevo")
 
     m1 = open("peajes-tp4.bin", "ab")
-    v = Vehiculo(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
+    v = Ticket(identificador, patente, tipo_vehiculo, forma_de_pago, pais_cabina, distancia)
     pickle.dump(v, m1)
     m1.close()
 
@@ -222,27 +223,29 @@ def buscar_id():
     fb = "peajes-tp4.bin"
     n = open(fb, "rb")
     t = os.path.getsize(fb)
+    paises = ['Argentina', 'Brasil', 'Bolivia', 'Paraguay', 'Uruguay', 'Chile', 'Otro']
+
 
     while n.tell() < t:
         vehic = pickle.load(n)
         if vehic.identificador == id:
             print("Codigo encontrado: \n")
             if patente_chi(vehic.patente):
-                pais = "Chile"
+                indice = 5
             elif patente_arg(vehic.patente):
-                pais = "Argentina"
+                indice = 0
             elif patente_bol(vehic.patente):
-                pais = "Bolivia"
+                indice = 2
             elif patente_brz(vehic.patente):
-                pais = "Brasil"
+                indice = 1
             elif patente_par(vehic.patente):
-                pais = "Paraguay"
+                indice = 3
             elif patente_uru(vehic.patente):
-                pais = "Uruguay"
+                indice = 4
             else:
-                pais = "Otro"
+                indice = 6
 
-            print(f'{vehic} | {pais}')
+            print(f'{vehic} | {paises[indice]}')
             coincide = True
             break
     if not coincide:

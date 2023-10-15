@@ -59,6 +59,9 @@ def main():
                 funciones.mostrar_arreglo(arreglo_vehiculos)
                 print(f'La distancia promedio es de: {distancia_promedio} KM')
 
+            elif opc_validada == 9:
+                break
+
 
 if __name__ == '__main__':
     main()

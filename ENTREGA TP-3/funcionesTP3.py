@@ -186,6 +186,7 @@ def crear_registro(arr):
     print('#' * 30)
     print(f'\nArreglo creado correctamente\n')
     print('#' * 30)
+    archivo.close()
 
 
 def cargar_registro(arr):
